@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">
+      <span class="logo-icon">✔️</span>
+      <span class="logo-text">TaskCheck</span>
+    </div>
+    <div class="stats">
+      <div class="stat-block">
+        <span class="stat-num" id="total-count">0</span>
+        <span class="stat-label">total</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-num" id="done-count">0</span>
+        <span class="stat-label">done</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-num" id="pending-count">0</span>
+        <span class="stat-label">left</span>
+      </div>
+    </div>
+    <div class="filter-group">
+      <p class="filter-title">Filter</p>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="pending">Pending</button>
+      <button class="filter-btn" data-filter="completed">Done</button>
+    </div>
+    <div class="filter-group">
+      <p class="filter-title">Priority</p>
+      <button class="filter-btn active-p" data-priority="all">All</button>
+      <button class="filter-btn" data-priority="high">High</button>
+      <button class="filter-btn" data-priority="medium">Medium</button>
+      <button class="filter-btn" data-priority="low">Low</button>
+    </div>
+    <!-- <a href="/docs" target="_blank" class="api-link">API Docs →</a> -->
+  </div>
+  <div class="main">
+    <header class="topbar" style="display:flex; justify-content:space-between; align-items:center; width:100%; padding: 28px 36px 20px;">
+      <h1>My Tasks</h1>
+      <button class="add-btn" id="open-modal">+ New Task</button>
+    </header>
+    <div id="task-list" class="task-list">
+      <div class="empty-state" id="empty-state">
+        <span>No tasks yet. Create one!</span>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-title">New Task</h2>
+        <button class="close-btn" id="close-modal">✕</button>
+      </div>
+      <input type="text" id="task-title" placeholder="Task title..." maxlength="80"/>
+      <textarea id="task-desc" placeholder="Description (optional)..." rows="3"></textarea>
+      <div class="priority-row">
+        <span class="priority-label">Priority</span>
+        <div class="priority-options">
+          <label class="prio-opt"><input type="radio" name="priority" value="low"> Low</label>
+          <label class="prio-opt"><input type="radio" name="priority" value="medium" checked> Medium</label>
+          <label class="prio-opt"><input type="radio" name="priority" value="high"> High</label>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="cancel-btn" id="cancel-modal">Cancel</button>
+        <button class="save-btn" id="save-task">Save Task</button>
+      </div>
+      <input type="hidden" id="edit-task-id" value="">
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
